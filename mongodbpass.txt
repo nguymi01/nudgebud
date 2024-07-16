@@ -1,0 +1,1 @@
+mongodb+srv://minhmovies99:TkpxbZcRhd8mtkfM@nudgebud.f7wi2fn.mongodb.net/
