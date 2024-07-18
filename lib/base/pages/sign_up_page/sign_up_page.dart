@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterdemo/base/color.dart';
+import 'package:flutterdemo/base/pages/sign_up_page/signup_page_bloc.dart';
 import 'package:flutterdemo/base/size.dart';
-import 'package:flutterdemo/widgets/curstom_button.dart';
+import 'package:flutterdemo/base/tools.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -19,12 +21,43 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController lNameCon = TextEditingController();
   TextEditingController passwordCon = TextEditingController();
   TextEditingController emailCon = TextEditingController();
+  SignupPageBloc bloc = SignupPageBloc();
 
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<SignupPageBloc, SignupPageState>(
+      bloc: bloc,
+      builder: (context, state) {
+        if (state is SignupPageInitial){
+          return mainView(context);
+        }
+        return Container();
+      },
+      buildWhen: (SignupPageState prev, SignupPageState current) {
+        if (current is SignupPageStateFail) {
+          print(current.error+'Errorrrrrrrrrrrrrrrrrrrr');
+          return false;
+        } else if (current is SignupPageStateLoading) {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return loadingWindow(context);
+              });
+          return false;
+        } else if (current is SignupPageStateDismissLoading) {
+          Navigator.pop(context);
+          return false;
+        }
+        return true;
+      },
+    );
+  }
+
+  Widget mainView(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(),
         body: Column(
           children: [
@@ -137,7 +170,10 @@ class _SignUpPageState extends State<SignUpPage> {
               height: AppSize.getHeight(context, 16),
             ),
             GestureDetector(
-              onTap: (){},
+              onTap: () {
+                bloc.add(SignupPageEventSubmit(fNameCon.text, lNameCon.text,
+                    emailCon.text, passwordCon.text));
+              },
               child: Container(
                 decoration: const BoxDecoration(
                   color: AppColor.black,

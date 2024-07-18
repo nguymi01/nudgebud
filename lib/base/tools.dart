@@ -367,7 +367,7 @@ Widget nudgeDetails(
     {String type = '', int count = 0}) {
   return GestureDetector(
     onTap: () {
-      bloc.add(EventRsvpDetailsEventClickOption(type:text));
+      bloc.add(EventRsvpDetailsEventClickOption(type: text));
     },
     child: SizedBox(
       height: 39,
@@ -391,36 +391,44 @@ Widget nudgeDetails(
   );
 }
 
-List<Widget> rsvpTypes(
-  BuildContext context,
-  String type,
-  EventRsvpDetailsBloc bloc,
-    List<InvitedFriend> invited
-) {
+List<Widget> rsvpTypes(BuildContext context, String type,
+    EventRsvpDetailsBloc bloc, List<InvitedFriend> invited) {
   return [
-    nudgeDetails(context, 'Accepted', bloc, type: type,count: invited.where((element) => element.status=='Accepted').length),
-    nudgeDetails(context, 'Declined', bloc, type:type,count: invited.where((element) => element.status=='Declined').length ),
-    nudgeDetails(context, 'Need RSVP', bloc, type: type, count: invited.where((element) => element.status=='Need RSVP').length ),
+    nudgeDetails(context, 'Accepted', bloc,
+        type: type,
+        count: invited.where((element) => element.status == 'Accepted').length),
+    nudgeDetails(context, 'Declined', bloc,
+        type: type,
+        count: invited.where((element) => element.status == 'Declined').length),
+    nudgeDetails(context, 'Need RSVP', bloc,
+        type: type,
+        count:
+            invited.where((element) => element.status == 'Need RSVP').length),
   ];
 }
-String rsvpOptionDisplayed(String type){
-  if (type=='Accepted'){
+
+String rsvpOptionDisplayed(String type) {
+  if (type == 'Accepted') {
     return 'These friends have accepted your nudge:';
-  }
-  else if (type == 'Declined'){
+  } else if (type == 'Declined') {
     return 'These friends have declined your nudge:';
-  }
-  else{
+  } else {
     return 'These friends have not responded:';
   }
 }
-Widget friendRSVPCard(BuildContext context, {String name = 'Dori Doreau'}){
+
+Widget friendRSVPCard(BuildContext context, {String name = 'Dori Doreau'}) {
   return Column(
     children: [
-      const Divider(color: AppColor.gray,),
-      SizedBox(height: AppSize.getHeight(context, 8),),
+      const Divider(
+        color: AppColor.gray,
+      ),
+      SizedBox(
+        height: AppSize.getHeight(context, 8),
+      ),
       Padding(
-        padding: EdgeInsets.symmetric(horizontal:AppSize.getWidth(context, 16)),
+        padding:
+            EdgeInsets.symmetric(horizontal: AppSize.getWidth(context, 16)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -431,43 +439,91 @@ Widget friendRSVPCard(BuildContext context, {String name = 'Dori Doreau'}){
                   backgroundImage: const NetworkImage(
                       'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D'),
                 ),
-                SizedBox(width: AppSize.getWidth(context, 8),),
-                Text(name,style: TextStyle(fontWeight: FontWeight.w500,fontSize: AppSize.getFontSize(context, 16),),)
+                SizedBox(
+                  width: AppSize.getWidth(context, 8),
+                ),
+                Text(
+                  name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: AppSize.getFontSize(context, 16),
+                  ),
+                )
               ],
             ),
             Row(
               children: [
-                Icon(Icons.messenger,color: AppColor.blue,size: AppSize.getHeight(context, 24),),
-                SizedBox(width: AppSize.getWidth(context, 16),),
-                Text('View Profile',style: TextStyle(fontWeight: FontWeight.w500,fontSize: AppSize.getFontSize(context, 14),color: AppColor.blue,)),
+                Icon(
+                  Icons.messenger,
+                  color: AppColor.blue,
+                  size: AppSize.getHeight(context, 24),
+                ),
+                SizedBox(
+                  width: AppSize.getWidth(context, 16),
+                ),
+                Text('View Profile',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: AppSize.getFontSize(context, 14),
+                      color: AppColor.blue,
+                    )),
               ],
             )
           ],
         ),
       ),
-      SizedBox(height: AppSize.getHeight(context, 8),),
-      Divider(color: AppColor.gray,),
-      SizedBox(height: AppSize.getHeight(context, 8),),
+      SizedBox(
+        height: AppSize.getHeight(context, 8),
+      ),
+      Divider(
+        color: AppColor.gray,
+      ),
+      SizedBox(
+        height: AppSize.getHeight(context, 8),
+      ),
     ],
   );
 }
-List<InvitedFriend> getMockInvited(){
+
+List<InvitedFriend> getMockInvited() {
   List<InvitedFriend> res = [];
-  for(int i=0; i<10;i++){
+  for (int i = 0; i < 10; i++) {
     res.add(InvitedFriend('John Doe', 'Accepted'));
   }
-  for(int i=0; i<2;i++){
+  for (int i = 0; i < 2; i++) {
     res.add(InvitedFriend('Doris Lane', 'Declined'));
   }
 
   return res;
 }
-List<Widget> filteredInvited(List<InvitedFriend> invited, String option,BuildContext context){
+
+List<Widget> filteredInvited(
+    List<InvitedFriend> invited, String option, BuildContext context) {
   List<Widget> res = [];
-  for (InvitedFriend friend in invited){
-    if (friend.status==option){
-      res.add(friendRSVPCard(context,name: friend.name));
+  for (InvitedFriend friend in invited) {
+    if (friend.status == option) {
+      res.add(friendRSVPCard(context, name: friend.name));
     }
   }
   return res;
+}
+
+Widget loadingWindow(BuildContext context) {
+  return AlertDialog(
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    backgroundColor: AppColor.white,
+    content: Row(
+      children: [
+        Expanded(
+          child: Text(
+            'Loading',
+            style: TextStyle(fontSize: AppSize.getFontSize(context, 16)),
+          ),
+        ),
+        const CircularProgressIndicator(
+          valueColor: AlwaysStoppedAnimation<Color>(AppColor.lightBlue),
+        )
+      ],
+    ),
+  );
 }
