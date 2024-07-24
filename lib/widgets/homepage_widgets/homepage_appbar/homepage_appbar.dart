@@ -36,7 +36,9 @@ class _HomepageAppBarState extends State<HomepageAppBar> {
               shape: BoxShape.circle,
             ),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, RoutesName.loginPage);
+                },
                 icon: const Icon(
                   Icons.notifications,
                   color: AppColor.black,

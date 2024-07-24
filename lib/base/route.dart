@@ -9,4 +9,6 @@ class RoutesName{
   static const String inboxViewPage = 'inboxViewPage';
   static const String eventRSVPDetailPage = 'eventRSVPDetailPage';
   static const String signUpPage = 'signUpPage';
+  static const String loginPage = 'loginPage';
+  static const String loginView = 'loginView';
 }

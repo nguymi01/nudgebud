@@ -15,4 +15,6 @@ class AppColor{
   static const Color green = Color(0xff6FCF97);
   static const Color yellow = Color(0xffF2C94C);
   static const Color grayFont = Color(0xff828282);
+  static const Color buttonBlue = Color(0xff2D9CDB);
+  static const Color grayTextField = Color(0xffE8ECF4);
 }

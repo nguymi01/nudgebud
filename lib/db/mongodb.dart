@@ -22,4 +22,13 @@ class MongoDatabase{
     userCollection = db.collection(USER_COLLECTION);
     await userCollection.insertOne({'_id':ObjectId(),'fname':fname,'lname':lname,'email':email,'password':password});
   }
+
+  static login(String email,String password) async{
+    db = await Db.create(MONGO_URL);
+    await db.open();
+    inspect(db);
+    userCollection = db.collection(USER_COLLECTION);
+    dynamic res = await userCollection.find({'email': email, 'password':password}).toList();
+    return res;
+  }
 }

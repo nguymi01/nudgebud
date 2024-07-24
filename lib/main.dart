@@ -7,6 +7,8 @@ import 'package:flutterdemo/base/pages/calendar_landing_page/calendar_landing_pa
 import 'package:flutterdemo/base/pages/event_rsvp_details_page/event_rsvp_detail_page.dart';
 import 'package:flutterdemo/base/pages/homepage/homepage.dart';
 import 'package:flutterdemo/base/pages/inbox_views_page/inbox_view_page.dart';
+import 'package:flutterdemo/base/pages/login_page/login_page.dart';
+import 'package:flutterdemo/base/pages/login_page/login_screen/login_screen.dart';
 import 'package:flutterdemo/base/pages/nudges_inbox_page/nudge_inbox_page.dart';
 import 'package:flutterdemo/base/pages/send_nudge_page/send_nudge_page.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_page.dart';
@@ -89,6 +91,16 @@ MaterialPageRoute<dynamic> routeSettings(RouteSettings settings) {
       return MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => SignUpPage(),
         settings: const RouteSettings(name: RoutesName.signUpPage),
+      );
+    case RoutesName.loginPage:
+      return MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => LoginPage(),
+        settings: const RouteSettings(name: RoutesName.loginPage),
+      );
+    case RoutesName.loginView:
+      return MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => LoginScreen(),
+        settings: const RouteSettings(name: RoutesName.loginView),
       );
     default:
       return MaterialPageRoute<dynamic>(
