@@ -73,20 +73,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: emailCon,
                   focusNode: emailNode,
                   decoration: InputDecoration(
-                    filled: true,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          color: AppColor.buttonBlue, width: 2.0),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    fillColor: AppColor.grayTextField,
-                    border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: AppColor.gray, width: 2.0),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    labelText: 'Enter your email',
-                  ),
+                      filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: AppColor.buttonBlue, width: 2.0),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      fillColor: AppColor.grayTextField,
+                      border: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: AppColor.gray, width: 2.0),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      labelText: 'Enter your email',
+                      floatingLabelStyle:
+                          const TextStyle(color: AppColor.darkBlue)),
                   onEditingComplete: () {
                     FocusScope.of(context).requestFocus(passNode);
                   },
@@ -102,20 +103,21 @@ class _LoginScreenState extends State<LoginScreen> {
                   obscureText: true,
                   focusNode: passNode,
                   decoration: InputDecoration(
-                    filled: true,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          color: AppColor.buttonBlue, width: 2.0),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    fillColor: AppColor.grayTextField,
-                    border: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(color: AppColor.gray, width: 2.0),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    labelText: 'Enter your password',
-                  ),
+                      filled: true,
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                            color: AppColor.buttonBlue, width: 2.0),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      fillColor: AppColor.grayTextField,
+                      border: OutlineInputBorder(
+                        borderSide:
+                            const BorderSide(color: AppColor.gray, width: 2.0),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      labelText: 'Enter your password',
+                      floatingLabelStyle:
+                          const TextStyle(color: AppColor.darkBlue)),
                   onEditingComplete: () {
                     FocusScope.of(context).requestFocus(passNode);
                   },

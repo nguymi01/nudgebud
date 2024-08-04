@@ -13,6 +13,7 @@ import 'package:flutterdemo/base/pages/nudges_inbox_page/nudge_inbox_page.dart';
 import 'package:flutterdemo/base/pages/send_nudge_page/send_nudge_page.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_page.dart';
 import 'package:flutterdemo/base/route.dart';
+import 'package:flutterdemo/base/style.dart';
 import 'package:flutterdemo/db/mongodb.dart';
 
 void main() async{
@@ -29,6 +30,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: 'home',
+
       onGenerateRoute: (RouteSettings settings) => routeSettings(settings),
       debugShowCheckedModeBanner: false,
       // localizationsDelegates: const<LocalizationsDelegate<dynamic>>[
