@@ -3,10 +3,14 @@ import 'package:flutterdemo/base/color.dart';
 import 'package:flutterdemo/base/size.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.text,  this.rightIcon, required this.onClick,  this.leftIcon});
+  const CustomButton({super.key, required this.text,  this.rightIcon, required this.onClick,  this.leftIcon,  this.width,  this.height, this.radius,this.color});
   final String text;
   final Icon? rightIcon;
   final Icon? leftIcon;
+  final double? width;
+  final double? height;
+  final double? radius;
+  final Color? color;
   final void Function() onClick;
 
   @override
@@ -14,15 +18,15 @@ class CustomButton extends StatelessWidget {
     return  GestureDetector(
       onTap: onClick,
       child: Container(
-        decoration: const BoxDecoration(
-          color: AppColor.blue,
+        decoration:  BoxDecoration(
+          color: color??AppColor.blue,
           borderRadius: BorderRadius.all(
-            Radius.circular(32),
+            Radius.circular(radius??32),
           ),
         ),
         child: SizedBox(
-          width: AppSize.getWidth(context, 256),
-          height: AppSize.getHeight(context, 46),
+          width: AppSize.getWidth(context, width!=null?width!:256),
+          height: AppSize.getHeight(context, height!=null?height!:46),
           child: Padding(
             padding: EdgeInsets.only(
                 left: AppSize.getWidth(context, 16),

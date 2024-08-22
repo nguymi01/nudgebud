@@ -57,7 +57,7 @@ class _HomepageAppBarState extends State<HomepageAppBar> {
               ),
               child: IconButton(
                   onPressed: () {
-                    Navigator.pushNamed(context,RoutesName.signUpPage);
+                    Navigator.pushNamed(context,RoutesName.signUpForm);
                   },
                   icon: const Icon(
                     Icons.messenger,

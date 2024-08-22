@@ -11,4 +11,6 @@ class RoutesName{
   static const String signUpPage = 'signUpPage';
   static const String loginPage = 'loginPage';
   static const String loginView = 'loginView';
+  static const String signUpForm = 'signUpForm';
+  static const String signUpGenderForm = 'signUpGenderForm';
 }

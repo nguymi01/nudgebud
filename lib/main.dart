@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutterdemo/base/pages/actionpage.dart';
 import 'package:flutterdemo/base/pages/available_friends_page/available_friends_page.dart';
 import 'package:flutterdemo/base/pages/calendar_expanded_page/calendar_expanded_page.dart';
 import 'package:flutterdemo/base/pages/calendar_expanded_page/nudge_filter_page/nudge_filter_page.dart';
@@ -11,14 +10,15 @@ import 'package:flutterdemo/base/pages/login_page/login_page.dart';
 import 'package:flutterdemo/base/pages/login_page/login_screen/login_screen.dart';
 import 'package:flutterdemo/base/pages/nudges_inbox_page/nudge_inbox_page.dart';
 import 'package:flutterdemo/base/pages/send_nudge_page/send_nudge_page.dart';
+import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/gender_form/gender_form.dart';
+import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/sign_up_form.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_page.dart';
 import 'package:flutterdemo/base/route.dart';
-import 'package:flutterdemo/base/style.dart';
 import 'package:flutterdemo/db/mongodb.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  await MongoDatabase.connect();
+  // await MongoDatabase.connect();
 
   runApp(App());
 }
@@ -103,6 +103,16 @@ MaterialPageRoute<dynamic> routeSettings(RouteSettings settings) {
       return MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => LoginScreen(),
         settings: const RouteSettings(name: RoutesName.loginView),
+      );
+    case RoutesName.signUpForm:
+      return MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => SignUpForm(),
+        settings: const RouteSettings(name: RoutesName.signUpForm),
+      );
+    case RoutesName.signUpGenderForm:
+      return MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => GenderForm(),
+        settings: const RouteSettings(name: RoutesName.signUpGenderForm),
       );
     default:
       return MaterialPageRoute<dynamic>(

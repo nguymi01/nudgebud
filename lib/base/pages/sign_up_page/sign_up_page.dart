@@ -6,6 +6,7 @@ import 'package:flutterdemo/base/pages/sign_up_page/signup_page_bloc.dart';
 import 'package:flutterdemo/base/size.dart';
 import 'package:flutterdemo/base/tools.dart';
 import 'package:flutterdemo/base/style.dart';
+
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -17,11 +18,13 @@ class _SignUpPageState extends State<SignUpPage> {
   FocusNode firstNameFocusNode = FocusNode();
   FocusNode lastNameFocusNode = FocusNode();
   FocusNode passwordFocusNode = FocusNode();
+  FocusNode confirmPasswordFocusNode = FocusNode();
   FocusNode emailFocusNode = FocusNode();
   GlobalKey<FormState> _key = GlobalKey<FormState>();
   TextEditingController fNameCon = TextEditingController();
   TextEditingController lNameCon = TextEditingController();
   TextEditingController passwordCon = TextEditingController();
+  TextEditingController confirmPasswordCon = TextEditingController();
   TextEditingController emailCon = TextEditingController();
   SignupPageBloc bloc = SignupPageBloc();
 
@@ -30,14 +33,14 @@ class _SignUpPageState extends State<SignUpPage> {
     return BlocBuilder<SignupPageBloc, SignupPageState>(
       bloc: bloc,
       builder: (context, state) {
-        if (state is SignupPageInitial){
+        if (state is SignupPageInitial) {
           return mainView(context);
         }
         return Container();
       },
       buildWhen: (SignupPageState prev, SignupPageState current) {
         if (current is SignupPageStateFail) {
-          print(current.error+'Errorrrrrrrrrrrrrrrrrrrr');
+          print(current.error + 'Errorrrrrrrrrrrrrrrrrrrr');
           return false;
         } else if (current is SignupPageStateLoading) {
           showDialog(
@@ -65,37 +68,17 @@ class _SignUpPageState extends State<SignUpPage> {
           key: _key,
           child: Column(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColor.black,
-                    // Border color
-                    width: 2, // Border width
-                  ),
-                  color: Colors.red,
-                  shape: BoxShape.circle,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(AppSize.getWidth(context, 8)),
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.lock_outline,
-                      size: AppSize.getWidth(context, 32),
-                      color: AppColor.white,
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: AppSize.getHeight(context, 10),
-              ),
-              Text(
-                'Sign Up',
-                style: TextStyle(fontSize: AppSize.getFontSize(context, 32)),
-              ),
               SizedBox(
                 height: AppSize.getHeight(context, 32),
+              ),
+              Text(
+                'Hello! Register to get started',
+                style: TextStyle(
+                    fontSize: AppSize.getFontSize(context, 22),
+                    fontWeight: FontWeight.w600),
+              ),
+              SizedBox(
+                height: AppSize.getHeight(context, 24),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -103,8 +86,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   SizedBox(
                     width: AppSize.getWidth(context, 145),
                     child: TextFormField(
-                      validator: (value){
-                        if(value==null||value.isEmpty){
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
                           return "Please enter your first name";
                         }
                         return null;
@@ -123,8 +106,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   SizedBox(
                     width: AppSize.getWidth(context, 145),
                     child: TextFormField(
-                      validator: (value){
-                        if(value==null||value.isEmpty){
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
                           return "Please enter your last name";
                         }
                         return null;
@@ -146,8 +129,8 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: SizedBox(
                   width: AppSize.getWidth(context, 300),
                   child: TextFormField(
-                    validator: (value){
-                      if(value==null||value.isEmpty){
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return "Please enter your email";
                       }
                       return null;
@@ -167,8 +150,8 @@ class _SignUpPageState extends State<SignUpPage> {
               SizedBox(
                 width: AppSize.getWidth(context, 300),
                 child: TextFormField(
-                  validator: (value){
-                    if(value==null||value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Please enter your password";
                     }
                     return null;
@@ -177,6 +160,28 @@ class _SignUpPageState extends State<SignUpPage> {
                   controller: passwordCon,
                   focusNode: passwordFocusNode,
                   decoration: textFieldStyle('Password'),
+                  onEditingComplete: () {
+                    FocusScope.of(context)
+                        .requestFocus(confirmPasswordFocusNode);
+                  },
+                ),
+              ),
+              SizedBox(
+                height: AppSize.getHeight(context, 16),
+              ),
+              SizedBox(
+                width: AppSize.getWidth(context, 300),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value == null || value != passwordCon.text) {
+                      return "Please confirm your password";
+                    }
+                    return null;
+                  },
+                  obscureText: true,
+                  controller: confirmPasswordCon,
+                  focusNode: confirmPasswordFocusNode,
+                  decoration: textFieldStyle('Confirm password'),
                   onEditingComplete: () {
                     FocusScope.of(context).requestFocus(FocusNode());
                   },
