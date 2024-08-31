@@ -13,8 +13,8 @@ class NamesForm extends StatefulWidget {
 }
 
 class _NamesFormState extends State<NamesForm> {
-  TextEditingController fNameController  = TextEditingController();
-  TextEditingController lNameController  = TextEditingController();
+  TextEditingController fNameController = TextEditingController();
+  TextEditingController lNameController = TextEditingController();
   FocusNode fNameFocusNode = FocusNode();
   FocusNode lNameFocusNode = FocusNode();
   @override
@@ -23,7 +23,8 @@ class _NamesFormState extends State<NamesForm> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding:  EdgeInsets.symmetric(horizontal: AppSize.getWidth(context, 8)),
+          padding:
+              EdgeInsets.symmetric(horizontal: AppSize.getWidth(context, 8)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,7 +50,9 @@ class _NamesFormState extends State<NamesForm> {
                     fontSize: AppSize.getFontSize(context, 21),
                     fontWeight: FontWeight.w500),
               ),
-              SizedBox(height: AppSize.getHeight(context, 16),),
+              SizedBox(
+                height: AppSize.getHeight(context, 16),
+              ),
               SizedBox(
                 width: AppSize.getWidth(context, 300),
                 child: TextFormField(
@@ -61,13 +64,16 @@ class _NamesFormState extends State<NamesForm> {
                   },
                   controller: fNameController,
                   focusNode: fNameFocusNode,
-                  decoration: textFieldStyle("First name...",color: AppColor.gray),
+                  decoration:
+                      textFieldStyle("First name...", color: AppColor.gray),
                   onEditingComplete: () {
                     FocusScope.of(context).requestFocus(lNameFocusNode);
                   },
                 ),
               ),
-              SizedBox(height: AppSize.getHeight(context, 16),),
+              SizedBox(
+                height: AppSize.getHeight(context, 16),
+              ),
               SizedBox(
                 width: AppSize.getWidth(context, 300),
                 child: TextFormField(
@@ -79,7 +85,8 @@ class _NamesFormState extends State<NamesForm> {
                   },
                   controller: lNameController,
                   focusNode: lNameFocusNode,
-                  decoration: textFieldStyle("Last name...",color: AppColor.gray),
+                  decoration:
+                      textFieldStyle("Last name...", color: AppColor.gray),
                   onEditingComplete: () {
                     FocusScope.of(context).requestFocus(FocusNode());
                   },
@@ -89,13 +96,23 @@ class _NamesFormState extends State<NamesForm> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(bottom:AppSize.getHeight(context, 16)),
-          child: CustomButton(onClick: (){
-            if(lNameController.text.length>0 && fNameController.text.length>0){
-              print('Hello Cruise');
-              Navigator.pushNamed(context, RoutesName.signUpGenderForm);
-            }
-          },text: 'Next',width: 275,height: 48,color: (lNameController.text.length>0 && fNameController.text.length>0)?AppColor.buttonBlue:AppColor.gray,),
+          padding: EdgeInsets.only(bottom: AppSize.getHeight(context, 16)),
+          child: CustomButton(
+            onClick: () {
+              if (lNameController.text.length > 0 &&
+                  fNameController.text.length > 0) {
+                print('Hello Cruise');
+                Navigator.pushNamed(context, RoutesName.signupProfilePhotoForm);
+              }
+            },
+            text: 'Next',
+            width: 275,
+            height: 48,
+            color: (lNameController.text.length > 0 &&
+                    fNameController.text.length > 0)
+                ? AppColor.buttonBlue
+                : AppColor.gray,
+          ),
         )
       ],
     );

@@ -1,4 +1,4 @@
-class RoutesName{
+class RoutesName {
   static const String homePage = 'home';
   static const String calendarLandingPage = 'calendarLanding';
   static const String calendarExpandedPage = 'calendarExpanded';
@@ -13,4 +13,7 @@ class RoutesName{
   static const String loginView = 'loginView';
   static const String signUpForm = 'signUpForm';
   static const String signUpGenderForm = 'signUpGenderForm';
+  static const String signUpBirthdayForm = 'signUpBirthdayForm';
+  static const String signupLocationForm = 'signUpLocationForm';
+  static const String signupProfilePhotoForm = 'profilePhotoForm';
 }

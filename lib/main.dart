@@ -10,13 +10,15 @@ import 'package:flutterdemo/base/pages/login_page/login_page.dart';
 import 'package:flutterdemo/base/pages/login_page/login_screen/login_screen.dart';
 import 'package:flutterdemo/base/pages/nudges_inbox_page/nudge_inbox_page.dart';
 import 'package:flutterdemo/base/pages/send_nudge_page/send_nudge_page.dart';
+import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/birthday/birthday_form.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/gender_form/gender_form.dart';
+import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/location/location_form.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/sign_up_form.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_page.dart';
+import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/photo_form/profile_photo_form.dart';
 import 'package:flutterdemo/base/route.dart';
-import 'package:flutterdemo/db/mongodb.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await MongoDatabase.connect();
 
@@ -41,7 +43,8 @@ class App extends StatelessWidget {
 }
 
 MaterialPageRoute<dynamic> routeSettings(RouteSettings settings) {
-  final Map<String, dynamic> data = settings.arguments as Map<String, dynamic>? ?? {};
+  final Map<String, dynamic> data =
+      settings.arguments as Map<String, dynamic>? ?? {};
   switch (settings.name) {
     case RoutesName.calendarLandingPage:
       return MaterialPageRoute<dynamic>(
@@ -76,7 +79,9 @@ MaterialPageRoute<dynamic> routeSettings(RouteSettings settings) {
       );
     case RoutesName.sendNudgePage:
       return MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => SendNudgePage(selectedFriends: data['selectedFriends'],),
+        builder: (BuildContext context) => SendNudgePage(
+          selectedFriends: data['selectedFriends'],
+        ),
         settings: const RouteSettings(name: RoutesName.sendNudgePage),
       );
     case RoutesName.inboxViewPage:
@@ -86,7 +91,9 @@ MaterialPageRoute<dynamic> routeSettings(RouteSettings settings) {
       );
     case RoutesName.eventRSVPDetailPage:
       return MaterialPageRoute<dynamic>(
-        builder: (BuildContext context) => EventRSVPDetailPage(nudge: data['nudgeWidget'],),
+        builder: (BuildContext context) => EventRSVPDetailPage(
+          nudge: data['nudgeWidget'],
+        ),
         settings: const RouteSettings(name: RoutesName.eventRSVPDetailPage),
       );
     case RoutesName.signUpPage:
@@ -113,6 +120,21 @@ MaterialPageRoute<dynamic> routeSettings(RouteSettings settings) {
       return MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => GenderForm(),
         settings: const RouteSettings(name: RoutesName.signUpGenderForm),
+      );
+    case RoutesName.signUpBirthdayForm:
+      return MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => BirthdayForm(),
+        settings: const RouteSettings(name: RoutesName.signUpBirthdayForm),
+      );
+    case RoutesName.signupLocationForm:
+      return MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => LocationForm(),
+        settings: const RouteSettings(name: RoutesName.signupLocationForm),
+      );
+    case RoutesName.signupProfilePhotoForm:
+      return MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => ProfilePhotoForm(),
+        settings: const RouteSettings(name: RoutesName.signupProfilePhotoForm),
       );
     default:
       return MaterialPageRoute<dynamic>(

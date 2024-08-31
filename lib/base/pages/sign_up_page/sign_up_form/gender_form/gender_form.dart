@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterdemo/base/color.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/gender_form/gender_form_bloc.dart';
+import 'package:flutterdemo/base/route.dart';
 import 'package:flutterdemo/base/size.dart';
 import 'package:flutterdemo/widgets/curstom_button.dart';
 
@@ -185,7 +186,10 @@ class _GenderFormState extends State<GenderForm> {
           padding: EdgeInsets.only(bottom: AppSize.getHeight(context, 16)),
           child: Center(
               child: CustomButton(
-            onClick: () {},
+                color: gender==""?AppColor.gray:AppColor.buttonBlue,
+            onClick: gender==""?(){}:() {
+              Navigator.pushNamed(context, RoutesName.signUpBirthdayForm);
+            },
             text: 'Next',
             width: 275,
             height: 48,
