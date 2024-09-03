@@ -1,35 +1,38 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterdemo/base/color.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/location/location_form_bloc.dart';
+import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/phone_number/bloc/phone_number_form_bloc.dart';
 import 'package:flutterdemo/base/route.dart';
 import 'package:flutterdemo/base/size.dart';
 import 'package:flutterdemo/base/style.dart';
 import 'package:flutterdemo/widgets/curstom_button.dart';
 
-class LocationForm extends StatefulWidget {
-  const LocationForm({super.key});
+class PhoneNumberForm extends StatefulWidget {
+  const PhoneNumberForm({super.key});
 
   @override
-  State<LocationForm> createState() => _LocationFormState();
+  State<PhoneNumberForm> createState() => _PhoneNumberFormState();
 }
 
-class _LocationFormState extends State<LocationForm> {
-  LocationFormBloc bloc = LocationFormBloc();
-  TextEditingController codeController = TextEditingController();
-  FocusNode codeFocusNode = FocusNode();
+class _PhoneNumberFormState extends State<PhoneNumberForm> {
+  PhoneNumberFormBloc bloc = PhoneNumberFormBloc();
+  TextEditingController phoneNumberController = TextEditingController();
+  FocusNode phoneNumberFocusNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LocationFormBloc, LocationFormState>(
+    return BlocBuilder<PhoneNumberFormBloc, PhoneNumberFormState>(
         bloc: bloc,
-        builder: (BuildContext context, LocationFormState state) {
-          if (state is LocationFormInitial) {
+        builder: (BuildContext context, PhoneNumberFormState state) {
+          if (state is PhoneNumberFormInitial) {
             return mainView(context, 'Select country');
-          } else if (state is LocationFormStateDisplayCountry) {
+          } else if (state is PhoneNumberFormStateDisplayCountry) {
+            print(state.country);
             return mainView(context, state.country);
           }
           return Container();
@@ -73,7 +76,7 @@ class _LocationFormState extends State<LocationForm> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Location',
+                          'Phone Number',
                           style: TextStyle(
                               fontSize: AppSize.getFontSize(context, 40),
                               fontWeight: FontWeight.w500),
@@ -82,7 +85,7 @@ class _LocationFormState extends State<LocationForm> {
                           height: AppSize.getHeight(context, 16),
                         ),
                         Text(
-                          "Enter your Location:",
+                          "Confirm your phone number:",
                           style: TextStyle(
                               fontSize: AppSize.getFontSize(context, 20),
                               fontWeight: FontWeight.w500),
@@ -96,8 +99,8 @@ class _LocationFormState extends State<LocationForm> {
                               showPhoneCode: false,
                               context: context,
                               onSelect: (Country country) {
-                                bloc.add(
-                                    LocationFormEventSelectDate(country.name));
+                                bloc.add(PhoneNumberFormEventSelectCountry(
+                                    country.name));
                               },
                               moveAlongWithKeyboard: false,
                               countryListTheme: CountryListThemeData(
@@ -167,13 +170,22 @@ class _LocationFormState extends State<LocationForm> {
                               if (value == null || value.isEmpty) {
                                 return "Please fill this field";
                               }
+                              if (!RegExp(r'^\d{3}-\d{3}-\d{4}$')
+                                  .hasMatch(value)) {
+                                return "Please enter a valid phone number (e.g., 717-462-7557)";
+                              }
                               return null;
                             },
-                            controller: codeController,
-                            focusNode: codeFocusNode,
+                            controller: phoneNumberController,
+                            focusNode: phoneNumberFocusNode,
                             decoration: locationFormStyle(
-                                context, "City or Zip Code",
+                                context, "Phone Number (e.g., 717-462-7557)",
                                 color: AppColor.gray),
+                            keyboardType: TextInputType.phone,
+                            // inputFormatters: [
+                            //   FilteringTextInputFormatter.allow(RegExp(r'[\d-]')),
+                            //   LengthLimitingTextInputFormatter(12),
+                            // ],
                             onEditingComplete: () {
                               FocusScope.of(context).requestFocus(FocusNode());
                             },
@@ -190,7 +202,7 @@ class _LocationFormState extends State<LocationForm> {
                       onClick: () {
                         if (_formKey.currentState!.validate()) {
                           Navigator.pushNamed(
-                              context, RoutesName.phonenNumberForm);
+                              context, RoutesName.signupProfilePhotoForm);
                         }
                       },
                       text: 'Next',

@@ -17,10 +17,6 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   SignUpBloc bloc = SignUpBloc();
 
-  // TextEditingController fNameController  = TextEditingController();
-  // TextEditingController lNameController  = TextEditingController();
-  // FocusNode fNameFocusNode = FocusNode();
-  // FocusNode lNameFocusNode = FocusNode();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
@@ -51,9 +47,9 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
         ),
         body: Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: AppSize.getWidth(context, 16)),
-            child: NamesForm(),
+          padding:
+              EdgeInsets.symmetric(horizontal: AppSize.getWidth(context, 16)),
+          child: NamesForm(),
         ),
       ),
     );

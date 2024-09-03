@@ -13,6 +13,7 @@ import 'package:flutterdemo/base/pages/send_nudge_page/send_nudge_page.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/birthday/birthday_form.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/gender_form/gender_form.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/location/location_form.dart';
+import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/phone_number/phone_number_form.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/sign_up_form.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_page.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/photo_form/profile_photo_form.dart';
@@ -135,6 +136,11 @@ MaterialPageRoute<dynamic> routeSettings(RouteSettings settings) {
       return MaterialPageRoute<dynamic>(
         builder: (BuildContext context) => ProfilePhotoForm(),
         settings: const RouteSettings(name: RoutesName.signupProfilePhotoForm),
+      );
+    case RoutesName.phonenNumberForm:
+      return MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => PhoneNumberForm(),
+        settings: const RouteSettings(name: RoutesName.phonenNumberForm),
       );
     default:
       return MaterialPageRoute<dynamic>(

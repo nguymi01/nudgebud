@@ -113,7 +113,6 @@ class ProfilePhotoFormView extends StatelessWidget {
                           SizedBox(height: AppSize.getHeight(context, 16)),
                           GestureDetector(
                             onTap: () {
-                              print('Hello');
                               context
                                   .read<ProfilePhotoFormBloc>()
                                   .add(ProfilePhotoFormDeletePhoto());
@@ -149,16 +148,25 @@ class ProfilePhotoFormView extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(bottom: AppSize.getHeight(context, 16)),
               child: Center(
-                  child: CustomButton(
-                onClick: () {
-                  // TODO: Add logic to handle next button press
-                  Navigator.pushNamed(context, RoutesName.signupLocationForm);
-                },
-                text: 'Next',
-                color: AppColor.buttonBlue,
-                width: 275,
-                height: 48,
-              )),
+                child: BlocBuilder<ProfilePhotoFormBloc, ProfilePhotoFormState>(
+                  builder: (context, state) {
+                    final bool isPhotoSelected = state is ProfilePhotoSelected;
+                    return CustomButton(
+                      onClick: () {
+                        if (isPhotoSelected) {
+                          Navigator.pushNamed(
+                              context, RoutesName.signupLocationForm);
+                        }
+                      },
+                      text: 'Next',
+                      color:
+                          isPhotoSelected ? AppColor.buttonBlue : AppColor.gray,
+                      width: 275,
+                      height: 48,
+                    );
+                  },
+                ),
+              ),
             )
           ],
         ),

@@ -101,8 +101,7 @@ class _NamesFormState extends State<NamesForm> {
             onClick: () {
               if (lNameController.text.length > 0 &&
                   fNameController.text.length > 0) {
-                print('Hello Cruise');
-                Navigator.pushNamed(context, RoutesName.signupProfilePhotoForm);
+                Navigator.pushNamed(context, RoutesName.signUpGenderForm);
               }
             },
             text: 'Next',
