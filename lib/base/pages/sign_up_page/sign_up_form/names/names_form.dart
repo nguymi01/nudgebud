@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutterdemo/base/color.dart';
+import 'package:flutterdemo/base/constant.dart';
 import 'package:flutterdemo/base/route.dart';
 import 'package:flutterdemo/base/size.dart';
 import 'package:flutterdemo/base/style.dart';
+import 'package:flutterdemo/main.dart';
 import 'package:flutterdemo/widgets/curstom_button.dart';
 
 class NamesForm extends StatefulWidget {
@@ -101,6 +103,8 @@ class _NamesFormState extends State<NamesForm> {
             onClick: () {
               if (lNameController.text.length > 0 &&
                   fNameController.text.length > 0) {
+                prefs.setString(Constant.fName, fNameController.text);
+                prefs.setString(Constant.lName, lNameController.text);
                 Navigator.pushNamed(context, RoutesName.signUpGenderForm);
               }
             },

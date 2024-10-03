@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterdemo/base/color.dart';
+import 'package:flutterdemo/base/constant.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/location/location_form_bloc.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/phone_number/bloc/phone_number_form_bloc.dart';
 import 'package:flutterdemo/base/route.dart';
 import 'package:flutterdemo/base/size.dart';
 import 'package:flutterdemo/base/style.dart';
+import 'package:flutterdemo/main.dart';
 import 'package:flutterdemo/widgets/curstom_button.dart';
 
 class PhoneNumberForm extends StatefulWidget {
@@ -201,6 +203,10 @@ class _PhoneNumberFormState extends State<PhoneNumberForm> {
                         child: CustomButton(
                       onClick: () {
                         if (_formKey.currentState!.validate()) {
+                          prefs.setString(
+                              Constant.phoneNumber, phoneNumberController.text);
+                          print(
+                              '${prefs.getString(Constant.fName)} ${prefs.getString(Constant.lName)} ${prefs.getString(Constant.gender)}');
                           Navigator.pushNamed(
                               context, RoutesName.signupProfilePhotoForm);
                         }

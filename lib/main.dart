@@ -17,12 +17,15 @@ import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/phone_number/ph
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/sign_up_form.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_page.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/photo_form/profile_photo_form.dart';
+import 'package:flutterdemo/base/pages/splash_page/splash_page.dart';
 import 'package:flutterdemo/base/route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+late SharedPreferences prefs;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await MongoDatabase.connect();
-
+  prefs = await SharedPreferences.getInstance();
   runApp(App());
 }
 
@@ -32,7 +35,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: 'home',
+      initialRoute: 'splashPage',
 
       onGenerateRoute: (RouteSettings settings) => routeSettings(settings),
       debugShowCheckedModeBanner: false,
@@ -54,6 +57,11 @@ MaterialPageRoute<dynamic> routeSettings(RouteSettings settings) {
           today: data['today'],
         ),
         settings: const RouteSettings(name: RoutesName.calendarLandingPage),
+      );
+    case RoutesName.splashPage:
+      return MaterialPageRoute<dynamic>(
+        builder: (BuildContext context) => SplashPage(),
+        settings: const RouteSettings(name: RoutesName.splashPage),
       );
     case RoutesName.calendarExpandedPage:
       return MaterialPageRoute<dynamic>(

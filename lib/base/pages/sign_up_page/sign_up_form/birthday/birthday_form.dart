@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:flutterdemo/base/color.dart';
+import 'package:flutterdemo/base/constant.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/birthday/birthday_form_bloc.dart';
 import 'package:flutterdemo/base/route.dart';
 import 'package:flutterdemo/base/size.dart';
+import 'package:flutterdemo/main.dart';
 import 'package:flutterdemo/widgets/curstom_button.dart';
 
 class BirthdayForm extends StatefulWidget {
@@ -104,6 +106,7 @@ class _BirthdayFormState extends State<BirthdayForm> {
                 child: Center(
                     child: CustomButton(
                   onClick: () {
+                    prefs.setString(Constant.birthday, selectedDate.toString());
                     Navigator.pushNamed(context, RoutesName.signupLocationForm);
                   },
                   text: 'Next',

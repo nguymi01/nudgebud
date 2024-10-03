@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutterdemo/base/route.dart';
 import 'package:flutterdemo/base/size.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    _navigateToHome(context);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body:  Column(
+    return Scaffold(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Stack(
@@ -21,8 +33,7 @@ class SplashPage extends StatelessWidget {
               ),
               Center(
                 child: Padding(
-                  padding:
-                  EdgeInsets.only(left: AppSize.getWidth(context, 24)),
+                  padding: EdgeInsets.only(left: AppSize.getWidth(context, 24)),
                   child: const Image(
                     image: AssetImage('assets/NudgeBudBadge 1.png'),
                   ),
@@ -33,5 +44,10 @@ class SplashPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _navigateToHome(BuildContext context) async {
+    await Future<void>.delayed(const Duration(seconds: 3));
+    Navigator.pushReplacementNamed(context, RoutesName.homePage);
   }
 }

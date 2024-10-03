@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutterdemo/base/color.dart';
+import 'package:flutterdemo/base/constant.dart';
 import 'package:flutterdemo/base/pages/sign_up_page/sign_up_form/location/location_form_bloc.dart';
 import 'package:flutterdemo/base/route.dart';
 import 'package:flutterdemo/base/size.dart';
 import 'package:flutterdemo/base/style.dart';
+import 'package:flutterdemo/main.dart';
 import 'package:flutterdemo/widgets/curstom_button.dart';
 
 class LocationForm extends StatefulWidget {
@@ -189,6 +191,8 @@ class _LocationFormState extends State<LocationForm> {
                         child: CustomButton(
                       onClick: () {
                         if (_formKey.currentState!.validate()) {
+                          prefs.setString(Constant.location, country);
+                          prefs.setString(Constant.city, codeController.text);
                           Navigator.pushNamed(
                               context, RoutesName.phonenNumberForm);
                         }

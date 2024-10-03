@@ -17,4 +17,5 @@ class RoutesName {
   static const String signupLocationForm = 'signUpLocationForm';
   static const String signupProfilePhotoForm = 'profilePhotoForm';
   static const String phonenNumberForm = 'phoneNumberForm';
+  static const String splashPage = 'splashPage';
 }
